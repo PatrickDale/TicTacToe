@@ -14,8 +14,8 @@ public class TicTacToe {
     }
 
     public void run() {
-        printStream.print("  |  |\n---------\n  |  |\n" +
-                "---------\n  |  |");
+        printStream.print(" | |\n------\n | |\n" +
+                "------\n | |");
     }
 
     public static void main(String[] args) {

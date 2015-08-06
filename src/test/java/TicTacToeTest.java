@@ -18,7 +18,8 @@ public class TicTacToeTest {
         TicTacToe application = new TicTacToe(printStream);
         application.run();
 
-        verify(printStream).print("  |  |\n---------\n  |  |\n" +
-                "---------\n  |  |");
+
+        verify(printStream).print(" | |\n------\n | |\n" +
+                "------\n | |");
     }
 }
