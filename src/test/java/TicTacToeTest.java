@@ -37,4 +37,11 @@ public class TicTacToeTest {
 
         verify(player).nextMoveLocation();
     }
+
+    @Test
+    public void shouldPromptPlayerToEnterALocationToMoveWhenAplicationStarts() throws Exception {
+        application.run();
+
+        verify(printStream).print("Enter a number between 1 and 9: ");
+    }
 }

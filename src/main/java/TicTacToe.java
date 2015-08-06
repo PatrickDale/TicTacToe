@@ -19,7 +19,12 @@ public class TicTacToe {
     public void run() {
         printStream.print(" | |\n------\n | |\n" +
                 "------\n | |\n");
+        promptPlayerToEnterAMoveLocation();
         player.nextMoveLocation();
+    }
+
+    private void promptPlayerToEnterAMoveLocation() {
+        printStream.print("Enter a number between 1 and 9: ");
     }
 
     public static void main(String[] args) {
