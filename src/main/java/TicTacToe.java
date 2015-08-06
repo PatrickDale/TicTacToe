@@ -3,6 +3,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by pdale on 8/6/15.
@@ -12,7 +13,7 @@ public class TicTacToe {
 
     private PrintStream printStream;
     private Player player;
-    private Collection<Collection<String>> gameBoard;
+    private List<List<String>> gameBoard;
 
     public TicTacToe(PrintStream printStream, Player player) {
         this.printStream = printStream;
@@ -23,7 +24,7 @@ public class TicTacToe {
     private void initializeGameBoard() {
         gameBoard = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            Collection<String> row = new ArrayList<>();
+            List<String> row = new ArrayList<>();
             for (int j = 0; j < 3; j++) {
                 row.add(" ");
             }
@@ -35,6 +36,18 @@ public class TicTacToe {
         displayGameBoard();
         promptPlayerToEnterAMoveLocation();
         String moveLocation = player.nextMoveLocation();
+        addPlayerTokenToGameBoard(moveLocation);
+        displayGameBoard();
+    }
+
+    private void addPlayerTokenToGameBoard(String moveLocation) {
+        if (moveLocation == null) {
+            moveLocation = "1";
+        }
+        Integer location = Integer.parseInt(moveLocation) - 1;
+        Integer row = location % 3;
+        Integer column = location - row;
+        gameBoard.get(row).set(column, "X");
     }
 
     private void displayGameBoard() {
