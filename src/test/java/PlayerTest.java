@@ -14,22 +14,13 @@ import static org.mockito.Mockito.when;
  * Created by pdale on 8/6/15.
  */
 public class PlayerTest {
-    PrintStream printStream;
     BufferedReader bufferedReader;
     Player player;
 
     @Before
     public void setUp() throws Exception {
-        printStream = mock(PrintStream.class);
         bufferedReader = mock(BufferedReader.class);
-        player = new Player(printStream, bufferedReader);
-    }
-
-    @Test
-    public void shouldPrintDirectionsWhenPromptingPlayerForNextMoveLocation() throws Exception {
-        player.nextMoveLocation();
-
-        verify(printStream).print("Enter a number between 1 and 9: ");
+        player = new Player(bufferedReader);
     }
 
     @Test

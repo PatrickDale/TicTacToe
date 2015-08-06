@@ -27,8 +27,8 @@ public class TicTacToeTest {
     @Test public void shouldDrawBoardWhenApplicationStarts() {
         application.run();
 
-        verify(printStream).print(" | |\n------\n | |\n" +
-                "------\n | |\n");
+        verify(printStream).println(" | | \n------\n | | \n" +
+                "------\n | | ");
     }
 
     @Test
