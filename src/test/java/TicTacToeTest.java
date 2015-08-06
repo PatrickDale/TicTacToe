@@ -17,12 +17,14 @@ public class TicTacToeTest {
     TicTacToe application;
     PrintStream printStream;
     Player player;
+    GameBoard gameBoard;
 
     @Before
     public void setUp() throws Exception {
         printStream = mock(PrintStream.class);
         player = mock(Player.class);
         application = new TicTacToe(printStream, player);
+        gameBoard = mock(GameBoard.class);
     }
 
     @Test public void shouldDrawBoardWhenApplicationStarts() {

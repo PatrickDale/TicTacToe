@@ -13,54 +13,46 @@ public class TicTacToe {
 
     private PrintStream printStream;
     private Player player;
-    private List<List<String>> gameBoard;
+    private GameBoard gameBoard;
 
     public TicTacToe(PrintStream printStream, Player player) {
         this.printStream = printStream;
         this.player = player;
-        initializeGameBoard();
+        gameBoard = new GameBoard(buildBoard());
     }
 
-    private void initializeGameBoard() {
-        gameBoard = new ArrayList<>();
+    private List<List<String>> buildBoard() {
+        List<List<String>> board = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
             List<String> row = new ArrayList<>();
             for (int j = 0; j < 3; j++) {
                 row.add(" ");
             }
-            gameBoard.add(row);
+            board.add(row);
         }
+        return board;
     }
 
     public void run() {
         displayGameBoard();
         promptPlayerToEnterAMoveLocation();
         String moveLocation = player.nextMoveLocation();
-        addPlayerTokenToGameBoard(moveLocation);
+        gameBoard.addPlayerTokenToGameBoard("X", moveLocation);
         displayGameBoard();
     }
 
-    private void addPlayerTokenToGameBoard(String moveLocation) {
-        if (moveLocation == null) {
-            moveLocation = "1";
-        }
-        Integer location = Integer.parseInt(moveLocation) - 1;
-        Integer row = location % 3;
-        Integer column = location - row;
-        gameBoard.get(row).set(column, "X");
-    }
-
     private void displayGameBoard() {
-        String board = "";
-        for (Collection<String> row : gameBoard) {
+        List<List<String>> board = gameBoard.currentBoard();
+        String toDisplay = "";
+        for (List<String> row : board) {
             for (String token : row) {
-                board += token + "|";
+                toDisplay += token + "|";
             }
-            board = board.substring(0, board.length() - 1);
-            board += "\n------\n";
+            toDisplay = toDisplay.substring(0, toDisplay.length() - 1);
+            toDisplay += "\n------\n";
         }
-        board = board.substring(0, board.length() - 8);
-        printStream.println(board);
+        toDisplay = toDisplay.substring(0, toDisplay.length() - 8);
+        printStream.println(toDisplay);
     }
 
     private void promptPlayerToEnterAMoveLocation() {
