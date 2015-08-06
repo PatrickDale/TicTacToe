@@ -3,12 +3,12 @@ import java.io.PrintStream;
 /**
  * Created by pdale on 8/6/15.
  */
-public class ApplicationX {
+public class TicTacToe {
 
 
     private PrintStream printStream;
 
-    public ApplicationX(PrintStream printStream) {
+    public TicTacToe(PrintStream printStream) {
 
         this.printStream = printStream;
     }
@@ -19,7 +19,7 @@ public class ApplicationX {
     }
 
     public static void main(String[] args) {
-        ApplicationX applicationX = new ApplicationX(System.out);
-        applicationX.run();
+        TicTacToe ticTacToe = new TicTacToe(System.out);
+        ticTacToe.run();
     }
 }
