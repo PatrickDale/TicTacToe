@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.PrintStream;
@@ -12,14 +13,28 @@ import static org.mockito.Mockito.verify;
  * @author pdale, @date 8/6/15 1:20 PM
  */
 public class TicTacToeTest {
-    @Test public void shouldDrawBoardWhenApplicationStarts() {
-        PrintStream printStream = mock(PrintStream.class);
+    TicTacToe application;
+    PrintStream printStream;
+    Player player;
 
-        TicTacToe application = new TicTacToe(printStream);
+    @Before
+    public void setUp() throws Exception {
+        printStream = mock(PrintStream.class);
+        player = mock(Player.class);
+        application = new TicTacToe(printStream, player);
+    }
+
+    @Test public void shouldDrawBoardWhenApplicationStarts() {
         application.run();
 
-
         verify(printStream).print(" | |\n------\n | |\n" +
-                "------\n | |");
+                "------\n | |\n");
+    }
+
+    @Test
+    public void shouldDetermineNextMoveLocationFromPlayerWhenApplicationStarts() throws Exception {
+        application.run();
+
+        verify(player).nextMoveLocation();
     }
 }
